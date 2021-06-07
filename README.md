@@ -11,6 +11,10 @@ Then run the python file:
 ```
 python manage.py runserver 
 ```
+# Examples 
+Go to Scripts to check api examples 
+
+(Scripts)[https://github.com/Girik1105/REST-API/scripts]
 
 # Endpoints:
 
