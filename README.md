@@ -45,5 +45,4 @@ To verify jwt tokens
 ```
 To refresh JWT tokens 
 
-```
 
