@@ -12,8 +12,6 @@ Then run the python file:
 python manage.py runserver 
 ```
 
-# DOCS 
-
 # Endpoints:
 
 ```
@@ -30,8 +28,12 @@ Detail, Update and Delete view
 ```
 api/auth/register/
 ```
-
 To Create Users and get User Tokens 
+
+```
+/api/auth/
+```
+To get JWT Tokens 
 
 ```
 /api/auth/jwt/verify/
@@ -44,8 +46,4 @@ To verify jwt tokens
 To refresh JWT tokens 
 
 ```
-To get JWT Tokens 
 
-
-```
-api/auth/
