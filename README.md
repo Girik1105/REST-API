@@ -14,7 +14,7 @@ python manage.py runserver
 # Examples 
 Go to Scripts to check api examples 
 
-(Scripts)[https://github.com/Girik1105/REST-API/scripts]
+[scripts](https://github.com/Girik1105/REST-API/scripts)
 
 # Endpoints:
 
@@ -49,4 +49,10 @@ To verify jwt tokens
 ```
 To refresh JWT tokens 
 
+
+# Django Apps 
+
+[users](https://github.com/Girik1105/REST-API/users) : Handling all authentication of users
+
+[Posts](https://github.com/Girik1105/REST-API/users) : Model of posts, All CRUDL Views
 
