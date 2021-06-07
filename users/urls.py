@@ -20,5 +20,5 @@ urlpatterns = [
     path('jwt/refresh/', refresh_jwt_token, name='jwt-refresh'),
     
     #verify token
-    path('api-token-verify/', verify_jwt_token, name='jwt-verify'),
+    path('jwt/verify/', verify_jwt_token, name='jwt-verify'),
 ]
