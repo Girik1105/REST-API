@@ -54,5 +54,8 @@ To refresh JWT tokens
 
 # Tests
 
-[Scripts](https://github.com/Girik1105/REST-API/tree/master/scripts) : Scripts to test the api 
+```
+python manage.py test
+```
 
+[Scripts](https://github.com/Girik1105/REST-API/tree/master/scripts) : Scripts to test the api 
