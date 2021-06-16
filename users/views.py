@@ -31,16 +31,14 @@ class AuthView(APIView):
     permission_classes = []
     
     def post(self, request, *args, **kwargs):
-        #print(request.user)
+        # print(request.user)
         if request.user.is_authenticated:
             return Response({'detail': 'You are already authenticated'}, status=400)
         data = request.data
         username = data.get('username') # username or email address
         password = data.get('password')
-        qs = User.objects.filter(
-                Q(username__iexact=username)|
-                Q(email__iexact=username)
-            ).distinct()
+        qs = User.objects.filter(username=username)
+        # print(username, password)
         if qs.count() == 1:
             user_obj = qs.first()
             if user_obj.check_password(password):

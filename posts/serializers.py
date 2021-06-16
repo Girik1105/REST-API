@@ -25,7 +25,7 @@ class PostSerializer(serializers.ModelSerializer):
         content = data.get("content", None)
         image = data.get("image", None)
 
-        if content == "" and image == None:
+        if content == None and image == None:
             raise serializers.ValidationError("Image or content is required")
         
         return data 
