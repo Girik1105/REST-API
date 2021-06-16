@@ -24,6 +24,7 @@ urlpatterns = [
 
 
     # detail user view 
+    path('users/', views.UserApiView.as_view(), name='users-all'),
     path('<username>/', views.UserDetailApiView.as_view(), name='user-detail'),
     path('posts/<username>/', views.UserPostsApiView.as_view(), name='user-detail'),
 ]

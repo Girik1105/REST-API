@@ -66,7 +66,9 @@ REST_FRAMEWORK = {
     },
 
     # Added default schema class because by default django rest required this class
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    
+    'DEFAULT_PAGINATION_CLASS':'rest_api.utils.CustomPagination',
 }
 
 JWT_AUTH = {

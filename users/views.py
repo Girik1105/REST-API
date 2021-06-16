@@ -75,3 +75,8 @@ class UserPostsApiView(ListAPIView):
     def get_queryset(self, *args, **kwargs):
         username = self.kwargs['username']
         return Post.objects.filter(user__username=username)
+
+class UserApiView(ListAPIView):
+    serializer_class = serializers.UserSerializer
+    def get_queryset(self, *args, **kwargs):
+        return User.objects.all()

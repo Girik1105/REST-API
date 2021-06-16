@@ -7,6 +7,8 @@ User = get_user_model()
 from django.utils import timezone
 import datetime
 
+from rest_framework.reverse import reverse as api_reverse
+
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from rest_framework.reverse import reverse as api_reverse
@@ -21,6 +23,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         # fields = '__all__'
         exclude = ('password',)
+
+    def get_url(self, obj):
+        request = self.context.get('request')
+        return api_reverse("user-detail", kwargs={'username':obj.username}, request=request)
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(style={'input_type':'password'}, write_only=True)

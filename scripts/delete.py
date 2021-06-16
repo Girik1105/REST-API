@@ -24,7 +24,7 @@ headers = {
 }
 
 
-ENDPOINT = "http://127.0.0.1:8000/api/posts/13/"
+ENDPOINT = "http://127.0.0.1:8000/api/posts/12/"
 
 r = requests.delete(ENDPOINT, headers=headers)
 print("Delete Response:", r.status_code)

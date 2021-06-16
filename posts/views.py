@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
+from rest_framework import pagination
+
 from rest_framework.mixins import (CreateModelMixin,
                                    RetrieveModelMixin,
                                    UpdateModelMixin, 
@@ -105,10 +107,12 @@ class PostAPIView(UpdateModelMixin,
         return self.destroy(request, *args, **kwargs)        
 
 
+
 class postCreate(CreateModelMixin, ListAPIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly] 
     serializer_class = serializers.PostSerializer
+
     passed_id  = None
     queryset = models.Post.objects.all()
 

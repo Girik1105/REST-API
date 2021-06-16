@@ -18,18 +18,17 @@ token = r.json()['token']
 print('Authorization call:', r.status_code)
 print('JWT TOken Recieved:', token)
 
-headers = {
-    "Content-Type": "application/json",
+headers2 = {
+    # "Content-Type": "application/json",
     "Authorization": "JWT " + token,
 }
 
 post_data = {
-    "user":"girik",
-    "content":"New Post",
+    'content': 'this new content post 2 from api call'
 }
 
 ENDPOINT = "http://127.0.0.1:8000/api/posts/"
 
-r = requests.post(ENDPOINT, headers=headers)
+r = requests.post(ENDPOINT, data=post_data, headers=headers2)
 print("Create Response:", r.status_code)
-
+print(r.json())
