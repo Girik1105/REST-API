@@ -6,7 +6,7 @@ app_name = 'posts'
 
 urlpatterns = [
     path('posts/<id>/',   views.PostAPIView.as_view(),   name='list'),  #Detail View, Update View, Delete View
-    path('posts/',   views.PostCreateAPIView.as_view(),   name='detail'), #List View, Create View
+    path('posts/',   views.postCreate.as_view(),   name='detail'), #List View, Create View
  
     # path('posts/detail/<id>/', views.PostDetailAPIview.as_view(), name='detail'),
     # path('posts/create/', views.PostCreateAPIview.as_view(), name='create'),

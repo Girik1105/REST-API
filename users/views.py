@@ -8,10 +8,12 @@ from django.db.models import Q
 User = get_user_model()
 
 from . import serializers
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, ListAPIView
+
+from posts.models import Post
+from posts.serializers import PostSerializer
 
 from rest_framework_jwt.settings import api_settings
-
 from .utils import jwt_response_payload_handler
 
 
@@ -61,3 +63,15 @@ class RegisterAPIView(CreateAPIView):
     def get_serializer_context(self, *args, **kwargs):
         return {"request": self.request}
 
+
+class UserDetailApiView(RetrieveAPIView):
+    serializer_class = serializers.UserSerializer
+    queryset = User.objects.all()
+    lookup_field = 'username'
+
+class UserPostsApiView(ListAPIView):
+    lookup_field = 'username'
+    serializer_class = PostSerializer
+    def get_queryset(self, *args, **kwargs):
+        username = self.kwargs['username']
+        return Post.objects.filter(user__username=username)

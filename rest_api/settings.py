@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    # 'corsheaders',
 
     'posts',
     'users',
@@ -63,6 +64,9 @@ REST_FRAMEWORK = {
         'anon': '520/min',
         'user': '520/min'
     },
+
+    # Added default schema class because by default django rest required this class
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 JWT_AUTH = {

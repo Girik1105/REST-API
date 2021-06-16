@@ -27,7 +27,7 @@ post_data = {
     "content":"AMAZING POST",
 }
 
-ENDPOINT = "http://127.0.0.1:8000/api/posts/21/"
+ENDPOINT = "http://127.0.0.1:8000/api/posts/6/"
 
 r = requests.put(ENDPOINT, data=json.dumps(post_data), headers=headers)
 print("Update Response:", r.status_code, r.json())

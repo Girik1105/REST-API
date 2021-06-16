@@ -12,8 +12,7 @@ from rest_framework.mixins import (CreateModelMixin,
                                    DestroyModelMixin,
                                    ListModelMixin)
 
-from rest_framework.generics import (GenericAPIView,
-                                     ListAPIView, 
+from rest_framework.generics import (ListAPIView, 
                                      CreateAPIView, 
                                      RetrieveAPIView, 
                                      UpdateAPIView,
@@ -32,7 +31,7 @@ from users.permissions import IsOwnerOrReadOnly
 
 # class PostListAPIview(APIView):
 
-#     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+#     permission_classes = [IsAuthenticatedOrReadOnly]
 #     authentication_classes = []
 
 #     def get(self, reques, format=None):
@@ -43,7 +42,7 @@ from users.permissions import IsOwnerOrReadOnly
 
 
 # class PostCreateAPIview(CreateAPIView):
-#     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+#     permission_classes = [IsAuthenticatedOrReadOnly]
 #     authentication_classes = []   
     
 #     queryset = models.Post.objects.all()
@@ -71,7 +70,7 @@ from users.permissions import IsOwnerOrReadOnly
 #     lookup_field = 'id'
 
 # class PostDetailAPIview(RetrieveAPIView):
-#     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+#     permission_classes = [IsAuthenticatedOrReadOnly]
 #     authentication_classes = []   
     
 #     queryset = models.Post.objects.all()
@@ -105,41 +104,19 @@ class PostAPIView(UpdateModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)        
 
-class PostCreateAPIView(CreateModelMixin,
-                  RetrieveModelMixin,
-                  ListModelMixin, 
-                  GenericAPIView):
+
+class postCreate(CreateModelMixin, ListAPIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly] 
-    
-    queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
-
-    lookup_field = 'id'
-
-    def get_queryset(self):
-        qs = models.Post.objects.all()
-        query = self.request.GET.get('q')
-        if query is not None:
-            qs = qs.filter(content__icontains = query)
-        return qs
-    
-    def get_object(self):
-        request = self.request
-        passed_id = request.GET.get('id')
-        queryset = self.get_queryset()
-        obj = None 
-        if passed_id is not None:
-            obj = get_object_or_404(queryset, id=passed_id)
-            # self.check_permissions(request, obj)
-        return obj 
+    passed_id  = None
+    queryset = models.Post.objects.all()
 
     def get(self, request, *args, **kwargs):
-        passed_id = request.GET.get('id')
-        if passed_id is not None:
-            return self.retrieve(request, *args, **kwargs)
         return self.list(request, *args, **kwargs)      
-
-
+    
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

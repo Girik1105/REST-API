@@ -21,4 +21,9 @@ urlpatterns = [
     
     #verify token
     path('jwt/verify/', verify_jwt_token, name='jwt-verify'),
+
+
+    # detail user view 
+    path('<username>/', views.UserDetailApiView.as_view(), name='user-detail'),
+    path('posts/<username>/', views.UserPostsApiView.as_view(), name='user-detail'),
 ]
