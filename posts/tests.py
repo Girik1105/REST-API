@@ -1,7 +1,9 @@
+import os 
+import tempfile
+from PIL import Image
+
 from rest_framework.test import APITestCase
-
 from rest_framework.reverse import reverse as api_reverse
-
 from rest_framework import status
 
 # Create your tests here.
@@ -77,3 +79,21 @@ class StatusAPITestCase(APITestCase):
         response4 = self.client.get(url2, format='json')
         print("\nPost Not found status:", response4.status_code)
         self.assertEqual(response4.status_code, status.HTTP_404_NOT_FOUND)
+
+    # def test_post_create_image(self):
+    #     self.authenticate_user()
+    #     url = api_reverse('posts:post-list-create')
+
+    #     image_item = Image.new('RGB', (100, 100), (55, 247, 255))
+    #     temp_file = tempfile.NamedTemporaryFile(suffix='.jpg')   # creating a temporary file in memory to work with
+    #     image_item.save(temp_file, format='JPEG')
+
+    #     with open(temp_file.name, 'rb') as file_obj:
+    #         data = {
+    #             'content':"This is an image test post",
+    #             'image': file_obj
+    #         }
+            
+    #         response = self.client.post(url, data, format='multipart')
+    #         print(response.data, "\nPost status code:", response.status_code)
+    #         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
